@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamus Kata</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    {% load static %}  
+    <link href="{% static 'toxic/css/bootstrap.min.css' %}" rel="stylesheet">  
+    <script src="{% static 'toxic/js/bootstrap.min.js' %}"></script>
+
+    <style>
+    table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    }</style>
+</head>
+<body style="background-color: #f1f1f1;">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #CEE3F6;">
+    <div class="container" style="width:70px"></div>
+    <div class="container" style="width:980px">
+        <a class="navbar-brand" href="{% url 'index' %}"><b>Anti Toxic</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'rekaps' %}">Rekaps<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'kamus' %}">Kamus</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">    
+    <br/><br/><br/><br/><center><h1>Kamus Kata</h1></center><br/><br/>
+    <br/><center><label for="nama">Kamus Kata Kasar yang digunakan</label><br/><br/>
+    <div class="row">
+    <div class="col-4">
+    <center><label for="nama">Kata Kasar Tingkat 1</label><br/><br/>
+    <table class="table table-striped">
+        <tr style="background-color:#CEE3F6">
+            <th>Kata Kasar</th>
+            <th>Label</th>
+        </tr>
+        {% for i in satu %}
+        <tr style="background-color:#f1f1f1">
+            <td>{{i.kata_kasar}}</td>
+            <td>{{i.label}}</td>
+        </tr>
+        {% endfor %}
+    </table></center>
+    </div>
+    <div class="col-4">
+    <center><label for="nama">Kata Kasar Tingkat 2</label><br/><br/>
+    <table class="table table-striped">
+        <tr style="background-color:#CEE3F6">
+            <th>Kata Kasar</th>
+            <th>Label</th>
+        </tr>
+        {% for i in dua %}
+        <tr style="background-color:#f1f1f1">
+            <td>{{i.kata_kasar}}</td>
+            <td>{{i.label}}</td>
+        </tr>
+        {% endfor %}
+    </table></center>
+    </div>
+    <div class="col-4">
+    <center><label for="nama">Kata Kasar Tingkat 3</label><br/><br/>
+    <table class="table table-striped">
+        <tr style="background-color:#CEE3F6">
+            <th>Kata Kasar</th>
+            <th>Label</th>
+        </tr>
+        {% for i in tiga %}
+        <tr style="background-color:#f1f1f1">
+            <td>{{i.kata_kasar}}</td>
+            <td>{{i.label}}</td>
+        </tr>
+        {% endfor %}
+    </table></center>
+    </div>
+</div>
+    <br/><br/><br/><center><label for="nama">Kamus Kata Kasar yang ingin ditambahkan</label><br/><br/>
+    <table style="width:50%" class="table table-striped">
+        <tr style="background-color:#CEE3F6">
+            <th>Kata Kasar</th>
+            <th>Label</th>
+        </tr>
+        {% for i in isi_saran %}
+        <tr style="background-color: #f1f1f1">
+            <td style="width:50%">{{i.saran_kata}}</td>
+            <td style="width:50%">{{i.label}}</td>
+        </tr>
+        {% endfor %}
+    </table></center><br/><br/><br/>
+<form action="{% url 'kamus' %}" method = "post"> 
+    <div class="container">    
+        <center><label for="nama">Masukan Kata Kasar yang ingin ditambahkan:</label><br/><br/>
+        {% csrf_token %}
+        <input type="text" id="nama" name="nama" value="">
+        <select id="labels" name="labels">
+          <option value="kasar1">kasar1</option>
+          <option value="kasar2">kasar2</option>
+          <option value="kasar3">kasar3</option>
+        </select>
+        <br/><br/><input type="submit" value="Tambahkan"></center>
+    </div> 
+</form>
+
+</div><br/><br/><br/><br/><br/><br/><br/>
+</body>
+</html>

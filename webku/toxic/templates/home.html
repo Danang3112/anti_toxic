@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+	<form method="post">
+		{% csrv_token %}
+		{{form.as_p}}
+  		<br/><br/><p><a class="btn btn-primary btn-lg" role="button">Mulai Belajar !</a></p>
+	</form>
+</div>
+{% endblock %}

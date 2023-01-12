@@ -1,0 +1,92 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>home</title>
+    <!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    {% load static %}  
+    <link href="{% static 'toxic/css/bootstrap.min.css' %}" rel="stylesheet">  
+    <script src="{% static 'toxic/js/bootstrap.min.js' %}"></script>  
+</head>  
+<body style="background-color: #f1f1f1;">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #CEE3F6;">
+  	<div class="container" style="width:70px"></div>
+  	<div class="container" style="width:980px">
+		<a class="navbar-brand" href="{% url 'index' %}"><b>Anti Toxic</b></a>
+	  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  	</button>
+	</div>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav">
+	    	<li class="nav-item active">
+	        	<a class="nav-link" href="{% url 'rekaps' %}">Rekaps<span class="sr-only"></span></a>
+	      	</li>
+	      	<li class="nav-item">
+	        	<a class="nav-link" href="{% url 'kamus' %}">Kamus</a>
+	      	</li>
+	      	<li class="nav-item">
+	        	<a class="nav-link" href="#"></a>
+	      	</li>
+	    </ul>
+	</div>
+</nav>
+
+<br/><br/><br/><div class="container">
+	<table>
+		<tr>
+			<th>Upload file manual</th>
+			<th><a class="nav-link" href='tampil'>Menggunakan link youtube</a></th>
+		</tr>
+	</table>
+</div>	
+
+<form action="{% url 'index' %}" method = "post" enctype="multipart/form-data"> 
+    <div class="container">    
+    	<br/><br/><br/><br/><center><h2>Sistem Pemeringkat Konten Suara Berdasarkan Bahasa Kasar Menggunakan Pendekatan NLP (Natural Language Processing)</h2></center>
+    	<br/><br/><label class="form-label" for="customFile"><h5>Pilih dokumen suara</h5></label>
+    	{% csrf_token %}
+        <br/><input type="file" accept="audio/*" class="form-control" name="okey" value=" " id="customFile" />
+        <br/><label class="form-label"><h6>{{suara}}</h6></label>
+        <br/><center><input type="submit" value="Deteksi"></center>
+    </div> 
+</form>
+
+<br/><div class="container">
+  <label for="comment">Transkrip:</label>
+  <textarea class="form-control" rows="5" id="comment" name="oke" readonly="readonly" style="resize: none">{{cetak}}</textarea>
+</div><br/>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8">
+	  		<label>Hasil deteksi kata kasar:</label>
+	  		<textarea class="form-control" rows="3" id="comment" name="okke" readonly="readonly" style="resize: none">{% for i in logg %}{{i}} {% endfor %}</textarea>
+	  	</div>
+	    <div class="col-sm-4">
+	    	<label>Hasil klasifikasi:</label>
+	    	<textarea class="form-control" rows="3" id="comment" name="okke" readonly="readonly" style="resize: none">{{final}}</textarea>
+	  	</div>
+	</div>
+</div><br/><br/><br/>
+
+<footer class="text-center text-white" style="background-color: #BDBDBD;">
+  <!-- Grid container -->
+  	<div class="container pt-4">
+    	<font color="black"><h5 class="text-uppercase">Anti Toxic</h5>
+    	<p>AAnti Toxic adalah website yang dapat melakukan klasifikasi dan deteksi Bahasa kasar pada konten suara</p></font>
+  	</div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center text-dark p-3" style="background-color: #BDBDBD;">
+    © 2022 
+  </div>
+  <!-- Copyright -->
+</footer>  
+</body>  
+</html>
